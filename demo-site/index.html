@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Acme Widgets &mdash; Home</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav aria-label="Main">
+        <span class="brand">Acme Widgets</span>
+        <a href="/" aria-current="page">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card">
+        <h1>Ship websites you trust</h1>
+        <p>A tiny demo site used as the system under test for the Playwright suite.</p>
+
+        <label for="new-todo">Add a task</label>
+        <input id="new-todo" name="new-todo" type="text" placeholder="Write some tests" autocomplete="off" />
+        <button id="add-todo" type="button">Add</button>
+
+        <ul id="todo-list" class="todo-list" aria-live="polite"></ul>
+        <p id="todo-empty" class="muted">No tasks yet.</p>
+      </section>
+
+      <section class="card" style="margin-top: 1.5rem">
+        <h2>Counter</h2>
+        <button id="increment" type="button">Increment</button>
+        <p>Count: <output id="count">0</output></p>
+      </section>
+    </main>
+
+    <footer>&copy; 2026 Acme Widgets</footer>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Acme Widgets &mdash; Contact</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav aria-label="Main">
+        <span class="brand">Acme Widgets</span>
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html" aria-current="page">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card">
+        <h1>Contact us</h1>
+
+        <form id="contact-form" novalidate>
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" />
+          <p id="name-error" class="field-error" role="alert"></p>
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" />
+          <p id="email-error" class="field-error" role="alert"></p>
+
+          <label for="topic">Topic</label>
+          <select id="topic" name="topic">
+            <option value="sales">Sales</option>
+            <option value="support">Support</option>
+            <option value="other">Other</option>
+          </select>
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4"></textarea>
+          <p id="message-error" class="field-error" role="alert"></p>
+
+          <button type="submit">Send message</button>
+          <p id="form-status" role="status"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer>&copy; 2026 Acme Widgets</footer>
+
+    <script src="/contact.js"></script>
+  </body>
+</html>

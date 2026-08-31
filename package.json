@@ -1,0 +1,25 @@
+{
+  "name": "website_testing",
+  "version": "0.1.0",
+  "private": true,
+  "description": "End-to-end website testing suite (Playwright + TypeScript) with a bundled demo site",
+  "scripts": {
+    "site": "node server/server.mjs",
+    "smoke": "node --test \"scripts/*.test.mjs\"",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "test:mobile": "playwright test --project=\"Mobile Chrome\"",
+    "report": "playwright show-report",
+    "codegen": "playwright codegen http://localhost:4173",
+    "lint": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}
