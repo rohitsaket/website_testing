@@ -24,8 +24,8 @@ Point it at a real deployment by setting `BASE_URL` and dropping the `webServer`
 │   ├── contact.spec.ts   # validation, success path, aria-invalid
 │   └── navigation.spec.ts# routing, 404s, titles, console errors
 ├── scripts/smoke.test.mjs # browser-free HTTP checks (Node test runner)
-├── playwright.config.ts  # browsers, reporters, tracing, webServer
-└── .github/workflows/e2e.yml
+├── playwright.config.ts   # browsers, reporters, tracing, webServer
+└── ci/e2e-workflow.yml    # GitHub Actions workflow (see "CI" below)
 ```
 
 ## Getting started
@@ -60,6 +60,21 @@ BASE_URL=https://example.com npx playwright test --project=chromium
 Then remove (or guard) the `webServer` block in `playwright.config.ts` — it's only needed to boot
 the bundled demo site. `PLAYWRIGHT_` environment variables (e.g. `PLAYWRIGHT_BASE_URL`) and
 `.env` files are also picked up if you prefer those.
+
+## CI
+
+The ready-to-use GitHub Actions workflow lives at **`ci/e2e-workflow.yml`**. Copy it to
+`.github/workflows/e2e.yml` to enable it:
+
+```bash
+mkdir -p .github/workflows && cp ci/e2e-workflow.yml .github/workflows/e2e.yml
+```
+
+It runs on push to `main`, on pull requests, and manually: install deps → install browsers →
+smoke test → type check → full e2e suite → upload the HTML report as an artifact.
+
+> It is kept outside `.github/` because the tooling used to create this branch isn't permitted to
+> write workflow files; moving it in yourself is a one-line copy.
 
 ## Conventions
 
