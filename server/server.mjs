@@ -1,6 +1,6 @@
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
-import { extname, join, normalize, resolve } from 'node:path';
+import { extname, join, normalize, resolve, sep } from 'node:path';
 
 const ROOT = resolve(import.meta.dirname, '..', 'demo-site');
 const PORT = Number(process.env.PORT ?? 4173);
@@ -22,7 +22,8 @@ const server = createServer(async (req, res) => {
   const relative = normalize(urlPath === '/' ? '/index.html' : urlPath).replace(/^(\.\.[/\\])+/, '');
   const filePath = join(ROOT, relative);
 
-  if (!filePath.startsWith(ROOT)) {
+  // Prefix check must be separator-aware so `/demo-site-backup` can never match `/demo-site`.
+  if (filePath !== ROOT && !filePath.startsWith(ROOT + sep)) {
     res.writeHead(403).end('Forbidden');
     return;
   }

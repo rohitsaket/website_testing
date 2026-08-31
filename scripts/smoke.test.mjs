@@ -7,7 +7,6 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PORT = 4399;
-const BASE = `http://127.0.0.1:${PORT}`;
 
 /** Minimal request helper that does NOT normalise the path, so traversal can be tested. */
 function request(path) {

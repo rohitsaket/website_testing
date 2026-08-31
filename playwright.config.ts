@@ -1,7 +1,12 @@
 import { defineConfig, devices } from '@playwright/test';
 
 const PORT = Number(process.env.PORT ?? 4173);
-const baseURL = process.env.BASE_URL ?? `http://127.0.0.1:${PORT}`;
+const localURL = `http://127.0.0.1:${PORT}`;
+
+// BASE_URL lets you aim the suite at a real deployment. When it is set, the bundled
+// demo site is never booted and the webServer block is dropped entirely.
+const externalURL = process.env.BASE_URL;
+const baseURL = externalURL ?? localURL;
 
 export default defineConfig({
   testDir: './tests',
@@ -37,14 +42,14 @@ export default defineConfig({
     { name: 'Mobile Chrome', use: { ...devices['Pixel 7'] } },
   ],
 
-  // Boot the demo site before the suite and shut it down after.
-  // Remove this block when pointing the suite at a real deployment.
-  webServer: {
-    command: `node server/server.mjs`,
-    url: baseURL,
-    reuseExistingServer: !process.env.CI,
-    stdout: 'ignore',
-    stderr: 'pipe',
-    env: { PORT: String(PORT) },
-  },
+  webServer: externalURL
+    ? undefined
+    : {
+        command: `node server/server.mjs`,
+        url: localURL,
+        reuseExistingServer: !process.env.CI,
+        stdout: 'ignore',
+        stderr: 'pipe',
+        env: { PORT: String(PORT) },
+      },
 });
