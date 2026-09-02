@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "loadtest"
+version = "1.0.0"
+description = "Terminal-based HTTP load and stress tester for systems you are authorized to test"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "website_testing contributors" }]
+keywords = ["load testing", "stress testing", "benchmark", "performance", "http"]
+classifiers = [
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "Programming Language :: Python :: 3",
+    "Topic :: System :: Benchmark",
+]
+dependencies = []
+
+[project.scripts]
+loadtest = "loadtest.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/rohitsaket/website_testing"
+
+[tool.setuptools]
+packages = ["loadtest"]
+
+[tool.setuptools.package-data]
+loadtest = ["py.typed"]
